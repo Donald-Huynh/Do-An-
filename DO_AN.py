@@ -144,29 +144,4 @@ premier_clubs['total_market_value'] = premier_clubs['market_value_in_eur']
 
 premier_clubs.drop(['current_club_id', 'market_value_in_eur'], axis=1, inplace=True)
 
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
 
-# Đảm bảo premier_clubs có cột 'average_age' và 'name'
-sort_by_age = premier_clubs.sort_values('average_age', ascending=False)
-
-# Sử dụng Plotly để vẽ biểu đồ
-fig = go.Figure(go.Bar(
-    x=sort_by_age['average_age'],
-    y=sort_by_age['name'],
-    orientation='h',  # Chỉ ra rằng các cột sẽ nằm ngang
-    marker=dict(color=sort_by_age['average_age'], colorscale="Teal"),
-))
-
-# Cập nhật giao diện của biểu đồ
-fig.update_layout(
-    height=700,
-    title='Average Squad Age in Every Premier League Team',
-    plot_bgcolor='rgb(56,0,60)',
-)
-
-fig.update_yaxes(title_text='Team', showgrid=False)
-fig.update_xaxes(title_text='Average Age (in Squad)', showgrid=False)
-
-# Hiển thị biểu đồ
-fig.show()
